@@ -12,13 +12,14 @@ import CoreData
 public class NoteEntity: NSManagedObject {}
 
 extension NoteEntity {
-    @nonobjc public class override func fetchRequest() -> NSFetchRequest<NoteEntity>{
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<NoteEntity> {
         return NSFetchRequest<NoteEntity>(entityName: "NoteEntity")
     }
+
     @NSManaged public var id: UUID
     @NSManaged public var title: String
     @NSManaged public var details: String
     @NSManaged public var status: String
 }
 
-extension NoteEntity: Identifiable{}
+extension NoteEntity: Identifiable {}

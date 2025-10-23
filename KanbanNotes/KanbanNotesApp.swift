@@ -12,10 +12,11 @@ import CoreData
 struct KanbanNotesApp: App {
     let persistenceController = PersistenceController.shared
 
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+        var body: some Scene {
+            WindowGroup {
+                BoardView(viewModel: NotesViewModel(context: persistenceController.container.viewContext))
+                    .frame(minWidth: 900, minHeight: 500)
+            }
         }
     }
 }

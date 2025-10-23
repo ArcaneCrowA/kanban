@@ -19,4 +19,4 @@ struct KanbanNotesApp: App {
             }
         }
     }
-}
+

@@ -23,7 +23,7 @@ struct NoteCardView: View {
                     .lineLimit(2)
             }
         }
-        .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 100)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 75, maxHeight: 75)
         .onTapGesture { onTap() }
         .padding()
         .background(Color.gray.opacity(0.1))

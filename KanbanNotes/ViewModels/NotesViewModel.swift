@@ -23,11 +23,11 @@ class NotesViewModel: ObservableObject {
         do {
             notes = try context.fetch(request)
         } catch {
-            print("❌ Fetch failed:", error)
+            print("Fetch failed:", error)
         }
     }
 
-    func addNote(title: String, details: String = "", status: String = "To Do") {
+    func addNote(title: String, details: String = "", status: String = "TO DO") {
         let note = NoteEntity(context: context)
         note.id = UUID()
         note.title = title
@@ -51,7 +51,7 @@ class NotesViewModel: ObservableObject {
             try context.save()
             fetchNotes()
         } catch {
-            print("❌ Save error:", error)
+            print("Save error:", error)
         }
     }
 }

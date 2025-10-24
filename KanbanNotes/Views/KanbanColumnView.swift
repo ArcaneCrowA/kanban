@@ -32,15 +32,16 @@ struct KanbanColumnView: View {
 
                 .frame(maxWidth: .infinity, alignment: .center)
 
-            ForEach(notes) { note in
+            ScrollView{
+                ForEach(notes) { note in
 
-                NoteCardView(note: note, onTap: { onNoteTapped(note) })
+                    NoteCardView(note: note, onTap: { onNoteTapped(note) })
 
-                    .onDrag { NSItemProvider(object: note.id.uuidString as NSString) }
+                        .onDrag { NSItemProvider(object: note.id.uuidString as NSString) }
 
+                }
+                .padding(.bottom)
             }
-
-            Spacer()
 
         }
 

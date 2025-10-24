@@ -10,7 +10,7 @@ import SwiftUI
 struct BoardView: View {
     @StateObject var viewModel: NotesViewModel
     @State private var selectedNote: NoteEntity?
-    let statuses = ["To Do", "Doing", "Done"]
+    let statuses = ["TO DO", "DOING", "DONE"]
 
     var body: some View {
         HStack(alignment: .top, spacing: 16) {

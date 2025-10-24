@@ -6,36 +6,58 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct KanbanColumnView: View {
+
     let title: String
+
     let notes: [NoteEntity]
-    let onDropNote: (NoteEntity) -> Void
+
+    let onDropNote: (UUID) -> Void
 
     var body: some View {
+
         VStack(alignment: .leading) {
+
             Text(title)
+
                 .font(.title2)
+
                 .bold()
+
                 .padding(.bottom, 8)
 
             ForEach(notes) { note in
+
                 NoteCardView(note: note)
+
                     .onDrag { NSItemProvider(object: note.id.uuidString as NSString) }
-                    .onDrop(of: [.text], isTargeted: nil) { providers in
-                        _ = providers.first?.loadObject(ofClass: NSString.self) { idString, _ in
-                            if let id = UUID(uuidString: idString as String?) {
-                                DispatchQueue.main.async {
-                                    if let draggedNote = notes.first(where: { $0.id == id }) {
-                                        onDropNote(draggedNote)
-                                    }
-                                }
-                            }
-                        }
-                        return true
-                    }
+
             }
+
             Spacer()
+
+        }
+
+        .onDrop(of: [.text], isTargeted: nil) { providers in
+
+            _ = providers.first?.loadObject(ofClass: NSString.self) { idString, _ in
+
+                if let idString = idString as? String, let id = UUID(uuidString: idString) {
+
+                    DispatchQueue.main.async {
+
+                        onDropNote(id)
+
+                    }
+
+                }
+
+            }
+
+            return true
+
         }
         .padding()
         .background(Color(NSColor.windowBackgroundColor))

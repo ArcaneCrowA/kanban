@@ -5,8 +5,9 @@
 //  Created by Adilet Beishekeyev on 23.10.2025.
 //
 
-import Foundation
+import Combine
 import CoreData
+import Foundation
 
 class NotesViewModel: ObservableObject {
     @Published var notes: [NoteEntity] = []

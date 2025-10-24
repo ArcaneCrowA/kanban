@@ -14,8 +14,8 @@ struct NoteCardView: View {
         VStack(alignment: .leading) {
             Text(note.title)
                 .font(.headline)
-            if !note.details.isEmpty {
-                Text(note.details)
+            if !(note.details ?? "").isEmpty {
+                Text(note.details ?? "")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }

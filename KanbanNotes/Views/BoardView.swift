@@ -17,8 +17,10 @@ struct BoardView: View {
                 KanbanColumnView(
                     title: status,
                     notes: viewModel.notes.filter { $0.status == status },
-                    onDropNote: { note in
-                        viewModel.move(note: note, to: status)
+                    onDropNote: { id in
+                        if let note = viewModel.notes.first(where: { $0.id == id }) {
+                            viewModel.move(note: note, to: status)
+                        }
                     }
                 )
                 .frame(maxWidth: .infinity)

@@ -9,15 +9,20 @@ struct NoteEditorView: View {
 
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Title")) {
-                    TextField("", text: $title)
-                }
-                Section(header: Text("Details")) {
-                    TextField("", text: $details)
-                }
+            VStack(spacing: 20) {
+                TextField("Title", text: $title)
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+
+                TextEditor(text: $details)
+                    .font(.body)
+                    .padding()
+                    .border(Color.gray.opacity(0.2), width: 1)
+
+                Spacer()
             }
-            .navigationTitle("Edit Note")
+            .padding()
             .onAppear {
                 if let note = note {
                     title = note.title
@@ -28,6 +33,16 @@ struct NoteEditorView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") {
                         presentationMode.wrappedValue.dismiss()
+                    }
+                }
+                ToolbarItem(placement: .destructiveAction) {
+                    Button(role: .destructive) {
+                        if let noteToDelete = note {
+                            viewModel.delete(note: noteToDelete)
+                        }
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "trash")
                     }
                 }
                 ToolbarItem(placement: .confirmationAction) {

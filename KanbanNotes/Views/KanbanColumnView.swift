@@ -30,6 +30,8 @@ struct KanbanColumnView: View {
 
                 .padding(.bottom, 8)
 
+                .frame(maxWidth: .infinity, alignment: .center)
+
             ForEach(notes) { note in
 
                 NoteCardView(note: note, onTap: { onNoteTapped(note) })

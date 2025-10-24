@@ -15,14 +15,15 @@ struct NoteCardView: View {
         VStack(alignment: .leading) {
             Text(note.title)
                 .font(.headline)
+                .lineLimit(1)
             if !(note.details ?? "").isEmpty {
                 Text(note.details ?? "")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
+                    .lineLimit(2)
             }
-            Spacer()
         }
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
+        .frame(minWidth: 0, maxWidth: .infinity, maxHeight: 100)
         .onTapGesture { onTap() }
         .padding()
         .background(Color.gray.opacity(0.1))

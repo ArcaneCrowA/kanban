@@ -16,6 +16,8 @@ struct KanbanColumnView: View {
 
     let onDropNote: (UUID) -> Void
 
+    let onNoteTapped: (NoteEntity) -> Void
+
     var body: some View {
 
         VStack(alignment: .leading) {
@@ -30,7 +32,7 @@ struct KanbanColumnView: View {
 
             ForEach(notes) { note in
 
-                NoteCardView(note: note)
+                NoteCardView(note: note, onTap: { onNoteTapped(note) })
 
                     .onDrag { NSItemProvider(object: note.id.uuidString as NSString) }
 

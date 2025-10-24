@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BoardView: View {
     @StateObject var viewModel: NotesViewModel
+    @State private var selectedNote: NoteEntity?
     let statuses = ["To Do", "Doing", "Done"]
 
     var body: some View {
@@ -21,10 +22,16 @@ struct BoardView: View {
                         if let note = viewModel.notes.first(where: { $0.id == id }) {
                             viewModel.move(note: note, to: status)
                         }
+                    },
+                    onNoteTapped: { note in
+                        selectedNote = note
                     }
                 )
                 .frame(maxWidth: .infinity)
             }
+        }
+        .sheet(item: $selectedNote) { _ in
+            NoteEditorView(viewModel: viewModel, note: $selectedNote)
         }
         .padding()
         .toolbar {

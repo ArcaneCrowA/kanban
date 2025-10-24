@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NoteCardView: View {
     @ObservedObject var note: NoteEntity
+    let onTap: () -> Void
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -19,7 +20,10 @@ struct NoteCardView: View {
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
+            Spacer()
         }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
+        .onTapGesture { onTap() }
         .padding()
         .background(Color.gray.opacity(0.1))
         .cornerRadius(8)

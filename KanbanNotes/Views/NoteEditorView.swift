@@ -1,3 +1,10 @@
+//
+//  Note.swift
+//  KanbanNotes
+//
+//  Created by Adilet Beishekeyev on 24.10.2025.
+//
+
 import SwiftUI
 
 struct NoteEditorView: View {
@@ -26,7 +33,7 @@ struct NoteEditorView: View {
             .onAppear {
                 if let note = note {
                     title = note.title
-                    details = note.details ?? ""
+                    details = note.details
                 }
             }
             .toolbar {

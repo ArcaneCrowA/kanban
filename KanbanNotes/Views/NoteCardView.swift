@@ -16,8 +16,8 @@ struct NoteCardView: View {
             Text(note.title)
                 .font(.headline)
                 .lineLimit(1)
-            if !(note.details ?? "").isEmpty {
-                Text(note.details ?? "")
+            if !(note.details).isEmpty {
+                Text(note.details)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                     .lineLimit(2)

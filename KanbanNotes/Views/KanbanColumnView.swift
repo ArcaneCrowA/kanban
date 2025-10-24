@@ -61,6 +61,7 @@ struct KanbanColumnView: View {
             return true
 
         }
+        .frame(maxWidth: .infinity)
         .padding()
         .background(Color(NSColor.windowBackgroundColor))
         .cornerRadius(8)

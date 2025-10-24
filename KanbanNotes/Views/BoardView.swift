@@ -27,7 +27,7 @@ struct BoardView: View {
                         selectedNote = note
                     }
                 )
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
         .sheet(item: $selectedNote) { _ in
